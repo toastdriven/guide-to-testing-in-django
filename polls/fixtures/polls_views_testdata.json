@@ -1,0 +1,28 @@
+[
+    {
+        "pk": 1, 
+        "model": "polls.poll", 
+        "fields": {
+            "pub_date": "2011-04-09 23:44:02", 
+            "question": "Are you learning about testing in Django?"
+        }
+    }, 
+    {
+        "pk": 1, 
+        "model": "polls.choice", 
+        "fields": {
+            "votes": 1, 
+            "poll": 1, 
+            "choice": "Yes"
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "polls.choice", 
+        "fields": {
+            "votes": 0, 
+            "poll": 1, 
+            "choice": "No"
+        }
+    }
+]
