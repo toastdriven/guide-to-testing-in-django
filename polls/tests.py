@@ -63,14 +63,14 @@ class PollsViewsTestCase(TestCase):
         # Send no POST data.
         resp = self.client.post(reverse('polls_vote', kwargs={'poll_id': 1}))
         self.assertEqual(resp.status_code, 200)
-        self.assertEqual(resp.context['error_message'], "You didn't select a choice.")
+        self.assertEqual(resp.context['form']['choice'].errors, [u'This field is required.'])
         
         # Send junk POST data.
         resp = self.client.post(reverse('polls_vote', kwargs={'poll_id': 1}), {'foo': 'bar'})
         self.assertEqual(resp.status_code, 200)
-        self.assertEqual(resp.context['error_message'], "You didn't select a choice.")
+        self.assertEqual(resp.context['form']['choice'].errors, [u'This field is required.'])
         
         # Send a non-existant Choice PK.
         resp = self.client.post(reverse('polls_vote', kwargs={'poll_id': 1}), {'choice': 300})
         self.assertEqual(resp.status_code, 200)
-        self.assertEqual(resp.context['error_message'], "You didn't select a choice.")
+        self.assertEqual(resp.context['form']['choice'].errors, [u'Select a valid choice. That choice is not one of the available choices.'])
