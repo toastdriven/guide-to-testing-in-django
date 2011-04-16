@@ -2,8 +2,8 @@ from django.conf.urls.defaults import *
 
 
 urlpatterns = patterns('polls.views',
-    (r'^$', 'index'),
-    (r'^(?P<poll_id>\d+)/$', 'detail'),
-    (r'^(?P<poll_id>\d+)/results/$', 'results'),
-    (r'^(?P<poll_id>\d+)/vote/$', 'vote'),
+    url(r'^$', 'index', name='polls_index'),
+    url(r'^(?P<poll_id>\d+)/$', 'detail', name='polls_detail'),
+    url(r'^(?P<poll_id>\d+)/results/$', 'results', name='polls_results'),
+    url(r'^(?P<poll_id>\d+)/vote/$', 'vote', name='polls_vote'),
 )
