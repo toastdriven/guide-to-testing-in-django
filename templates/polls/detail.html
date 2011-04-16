@@ -2,7 +2,7 @@
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
-<form action="{% url polls_vote poll_id=poll.id %}" method="post">
+<form action="." method="post">
 {% csrf_token %}
 {{ form.as_p }}
 <input type="submit" value="Vote" />

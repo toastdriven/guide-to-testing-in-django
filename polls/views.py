@@ -13,18 +13,6 @@ def index(request):
 
 def detail(request, poll_id):
     p = get_object_or_404(Poll, pk=poll_id)
-    form = PollForm(instance=p)
-    return render_to_response('polls/detail.html', {'poll': p, 'form': form},
-                               context_instance=RequestContext(request))
-
-
-def results(request, poll_id):
-    p = get_object_or_404(Poll, pk=poll_id)
-    return render_to_response('polls/results.html', {'poll': p})
-
-
-def vote(request, poll_id):
-    p = get_object_or_404(Poll, pk=poll_id)
     
     if request.method == 'POST':
         form = PollForm(request.POST, instance=p)
@@ -42,3 +30,8 @@ def vote(request, poll_id):
         'poll': p,
         'form': form,
     }, context_instance=RequestContext(request))
+
+
+def results(request, poll_id):
+    p = get_object_or_404(Poll, pk=poll_id)
+    return render_to_response('polls/results.html', {'poll': p})

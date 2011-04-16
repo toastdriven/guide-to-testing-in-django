@@ -45,7 +45,7 @@ class PollsViewsTestCase(TestCase):
         poll_1 = Poll.objects.get(pk=1)
         self.assertEqual(poll_1.choice_set.get(pk=1).votes, 1)
         
-        resp = self.client.post(reverse('polls_vote', kwargs={'poll_id': 1}), {'choice': 1})
+        resp = self.client.post(reverse('polls_detail', kwargs={'poll_id': 1}), {'choice': 1})
         self.assertEqual(resp.status_code, 302)
         self.assertEqual(resp['Location'], 'http://testserver/polls/1/results/')
         
@@ -53,7 +53,7 @@ class PollsViewsTestCase(TestCase):
     
     def test_bad_votes(self):
         # Ensure a non-existant PK throws a Not Found.
-        resp = self.client.post(reverse('polls_vote', kwargs={'poll_id': 1000000}))
+        resp = self.client.post(reverse('polls_detail', kwargs={'poll_id': 1000000}))
         self.assertEqual(resp.status_code, 404)
         
         # Sanity check.
@@ -61,16 +61,16 @@ class PollsViewsTestCase(TestCase):
         self.assertEqual(poll_1.choice_set.get(pk=1).votes, 1)
         
         # Send no POST data.
-        resp = self.client.post(reverse('polls_vote', kwargs={'poll_id': 1}))
+        resp = self.client.post(reverse('polls_detail', kwargs={'poll_id': 1}))
         self.assertEqual(resp.status_code, 200)
         self.assertEqual(resp.context['form']['choice'].errors, [u'This field is required.'])
         
         # Send junk POST data.
-        resp = self.client.post(reverse('polls_vote', kwargs={'poll_id': 1}), {'foo': 'bar'})
+        resp = self.client.post(reverse('polls_detail', kwargs={'poll_id': 1}), {'foo': 'bar'})
         self.assertEqual(resp.status_code, 200)
         self.assertEqual(resp.context['form']['choice'].errors, [u'This field is required.'])
         
         # Send a non-existant Choice PK.
-        resp = self.client.post(reverse('polls_vote', kwargs={'poll_id': 1}), {'choice': 300})
+        resp = self.client.post(reverse('polls_detail', kwargs={'poll_id': 1}), {'choice': 300})
         self.assertEqual(resp.status_code, 200)
         self.assertEqual(resp.context['form']['choice'].errors, [u'Select a valid choice. That choice is not one of the available choices.'])
