@@ -1,0 +1,63 @@
+[
+    {
+        "pk": 1, 
+        "model": "polls.poll", 
+        "fields": {
+            "pub_date": "2011-04-09 23:44:02", 
+            "question": "Are you learning about testing in Django?"
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "polls.poll", 
+        "fields": {
+            "pub_date": "2011-04-16 14:42:52", 
+            "question": "How do you feel today?"
+        }
+    },
+    {
+        "pk": 1, 
+        "model": "polls.choice", 
+        "fields": {
+            "votes": 1, 
+            "poll": 1, 
+            "choice": "Yes"
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "polls.choice", 
+        "fields": {
+            "votes": 0, 
+            "poll": 1, 
+            "choice": "No"
+        }
+    },
+    {
+        "pk": 3, 
+        "model": "polls.choice", 
+        "fields": {
+            "votes": 1, 
+            "poll": 2, 
+            "choice": "Alright."
+        }
+    }, 
+    {
+        "pk": 4, 
+        "model": "polls.choice", 
+        "fields": {
+            "votes": 0, 
+            "poll": 2, 
+            "choice": "Meh."
+        }
+    }, 
+    {
+        "pk": 5, 
+        "model": "polls.choice", 
+        "fields": {
+            "votes": 0, 
+            "poll": 2, 
+            "choice": "Not so good."
+        }
+    }
+]
