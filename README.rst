@@ -14,5 +14,5 @@ For the admin:
 * **Username:** admin
 * **Password:** abc123
 
-.. _`blog series`: http://toastdriven.com/blog/2011/04/10/guide-to-testing-in-django/
+.. _`blog series`: http://toastdriven.com/blog/2011/apr/10/guide-to-testing-in-django/
 .. _`polls`: http://docs.djangoproject.com/en/1.3/intro/tutorial01/
