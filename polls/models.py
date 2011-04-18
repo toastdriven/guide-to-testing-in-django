@@ -21,3 +21,7 @@ class Choice(models.Model):
     
     def __unicode__(self):
         return self.choice
+    
+    def record_vote(self):
+        self.votes += 1
+        self.save()

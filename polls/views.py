@@ -18,10 +18,7 @@ def detail(request, poll_id):
         form = PollForm(request.POST, instance=p)
         
         if form.is_valid():
-            choice = form.cleaned_data['choice']
-            choice.votes += 1
-            choice.save()
-            
+            form.save()
             return HttpResponseRedirect(reverse('polls_results', kwargs={'poll_id': p.id}))
     else:
         form = PollForm(instance=p)

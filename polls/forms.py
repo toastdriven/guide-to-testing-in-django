@@ -15,3 +15,8 @@ class PollForm(forms.Form):
         # This has to be done here (instead of declaratively) because the
         # ``Poll`` instance will change from request to request.
         self.fields['choice'] = forms.ModelChoiceField(queryset=Choice.objects.filter(poll=self.instance.pk), empty_label=None, widget=forms.RadioSelect)
+    
+    def save(self):
+        choice = self.cleaned_data['choice']
+        choice.record_vote()
+        return choice
