@@ -17,6 +17,9 @@ class PollForm(forms.Form):
         self.fields['choice'] = forms.ModelChoiceField(queryset=Choice.objects.filter(poll=self.instance.pk), empty_label=None, widget=forms.RadioSelect)
     
     def save(self):
+        if not self.is_valid():
+            raise forms.ValidationError("PollForm was not validated first before trying to call 'save'.")
+        
         choice = self.cleaned_data['choice']
         choice.record_vote()
         return choice
