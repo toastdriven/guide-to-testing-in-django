@@ -7,12 +7,12 @@ from polls.models import Poll, Choice
 
 
 def index(request):
-    latest_poll_list = Poll.objects.all().order_by('-pub_date')[:5]
+    latest_poll_list = Poll.published.all().order_by('-pub_date')[:5]
     return render_to_response('polls/index.html', {'latest_poll_list': latest_poll_list})
 
 
 def detail(request, poll_id):
-    p = get_object_or_404(Poll, pk=poll_id)
+    p = get_object_or_404(Poll.published.all(), pk=poll_id)
     
     if request.method == 'POST':
         form = PollForm(request.POST, instance=p)
@@ -30,5 +30,5 @@ def detail(request, poll_id):
 
 
 def results(request, poll_id):
-    p = get_object_or_404(Poll, pk=poll_id)
+    p = get_object_or_404(Poll.published.all(), pk=poll_id)
     return render_to_response('polls/results.html', {'poll': p})
