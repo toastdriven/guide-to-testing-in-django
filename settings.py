@@ -94,7 +94,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
 )
 
-ROOT_URLCONF = 'guide_to_testing.urls'
+ROOT_URLCONF = 'urls'
 
 import os
 PROJECT_ROOT = os.path.dirname(__file__)
